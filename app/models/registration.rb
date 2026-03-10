@@ -8,6 +8,6 @@ class Registration < ApplicationRecord
   end
 
   with_options if: -> { current_step >= 3 } do
-    validates :phone, :cell_phone, presence: true
+    validates :cell_phone, presence: true
   end
 end
