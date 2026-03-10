@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Grow, Paper } from '@mui/material';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
@@ -27,32 +27,37 @@ export default function EndStep({ title, text, response = 'success' }) {
     };
 
     return (
-        <Box sx={{ textAlign: 'center', py: 6, px: 2 }}>
-            <IconComponent color={config.color} sx={{ fontSize: 120, mb: 3 }} />
+        <Paper elevation={4} sx={{ p: { xs: 4, md: 6 }, borderRadius: 4 }}>
+            <Grow in={true} timeout={300}>
+                <Box sx={{ textAlign: 'center', py: 6, px: 2 }}>
 
-            <Typography variant="h4" color="text.primary" fontWeight="700" gutterBottom>
-                {title}
-            </Typography>
+                    <IconComponent color={config.color} sx={{ fontSize: 120, mb: 3 }} />
 
-            <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ maxWidth: '400px', mx: 'auto', lineHeight: 1.6 }}
-            >
-                {text}
-            </Typography>
+                    <Typography variant="h4" color="text.primary" fontWeight="700" gutterBottom>
+                        {title}
+                    </Typography>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 'auto', pt: 4 }}>
-                <Button
-                    type="button"
-                    variant="outlined"
-                    color="primary"
-                    size='large'
-                    onClick={handleNewRegistration}
-                >
-                    Registrar novo interesse
-                </Button>
-            </Box>
-        </Box>
+                    <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ maxWidth: '400px', mx: 'auto', lineHeight: 1.6 }}
+                    >
+                        {text}
+                    </Typography>
+
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 'auto', pt: 4 }}>
+                        <Button
+                            type="button"
+                            variant="outlined"
+                            color="primary"
+                            size='large'
+                            onClick={handleNewRegistration}
+                        >
+                            Registrar novo interesse
+                        </Button>
+                    </Box>
+                </Box>
+            </Grow>
+        </Paper>
     );
 }
