@@ -64,7 +64,8 @@ function App() {
               <Grid item xs={12} md={7}>
                 <Stack spacing={3}>
                   <Stack direction="row" spacing={1.5} alignItems="center" flexWrap="wrap" useFlexGap>
-                    <Chip color="primary" label="Evento fictício • Edição especial" size="small" />
+                    <Chip color="primary" label="Evento Intelia • Edição especial" size="small" />
+                    <Divider orientation="vertical" flexItem />
                     <Typography variant="caption" color="text.secondary" fontWeight={600}>
                       Vagas limitadas para profissionais de vendas e atendimento
                     </Typography>
@@ -148,15 +149,6 @@ function App() {
                         </Typography>
                       </Box>
                     ))}
-
-                    <Divider />
-
-                    <Box>
-                      <Typography variant="body2" color="text.secondary">
-                        Esta página foi criada para um teste técnico e simula o cadastro de interesse no evento fictício
-                        “Utilizando as soluções da Intelia vender mais através do telefone e whatsapp”.
-                      </Typography>
-                    </Box>
                   </Stack>
                 </Paper>
               </Grid>
