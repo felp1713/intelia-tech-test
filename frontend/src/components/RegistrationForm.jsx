@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Stepper, Step, StepLabel, Box, Button, TextField, Alert, Grow } from '@mui/material';
+import { Stepper, Step, StepLabel, Box, Button, TextField, Alert, Grow, Paper, Typography } from '@mui/material';
 import FormStep from './FormStep';
 import EndStep from './EndStep';
 import { formConfig } from '../config/formSteps';
@@ -138,62 +138,76 @@ export default function RegistrationForm() {
 
     return (
         <>
-            <Stepper activeStep={currentStep - 1} alternativeLabel sx={{ mb: 8 }}>
-                {formConfig.map((config) => (
-                    <Step key={config.step}>
-                        <StepLabel>{config.title}</StepLabel>
-                    </Step>
-                ))}
-            </Stepper>
-
-            <form onSubmit={handleNext} noValidate>
-                <Grow in={true} key={currentStep} timeout={300}>
-                    <Box>
-                        <FormStep title={currentStepConfig.title}>
-                            {currentStepConfig.fields.map((field) => (
-                                <TextField
-                                    key={field.name}
-                                    fullWidth
-                                    label={field.label}
-                                    name={field.name}
-                                    type={field.type}
-                                    required={field.required}
-                                    value={formData[field.name] || ''}
-                                    onChange={handleChange}
-                                    InputLabelProps={field.type === 'date' ? { shrink: true } : {}}
-                                    variant="outlined"
-                                    error={!!errors[field.name]}
-                                    helperText={errors[field.name]}
-                                />
-                            ))}
-                        </FormStep>
+            <Grow in timeout={500}>
+                <Paper elevation={4} sx={{ p: { xs: 4, md: 6 }, borderRadius: 4 }}>
+                    <Box sx={{ textAlign: 'center', mb: 5 }}>
+                        <Typography variant="h4" component="h1" color="primary" fontWeight="700" gutterBottom>
+                            Inscrição no Evento
+                        </Typography>
+                        <Typography variant="body1" color="text.secondary">
+                            Preencha os passos abaixo para registrar o seu interesse. Leva menos de 1 minuto!
+                        </Typography>
                     </Box>
-                </Grow>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 'auto', pt: 4 }}>
-                    <Button
-                        disabled={currentStep === 1}
-                        onClick={() => setCurrentStep(prev => prev - 1)}
-                        size='large'
-                    >
-                        Voltar
-                    </Button>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        size='large'
-                        disabled={loading}
-                    >
-                        {currentStep === formConfig.length ? 'Finalizar' : 'Próximo'}
-                    </Button>
-                </Box>
-            </form>
 
-            {hasErrors && (
-                <Alert variant="outlined" severity="error" sx={{ mt: 2, borderRadius: '8px' }} onClose={() => setHasErrors(false)}>
-                    Por favor, corrija os campos em vermelho antes de prosseguir.
-                </Alert>
-            )}
+
+                    <Stepper activeStep={currentStep - 1} alternativeLabel sx={{ mb: 8 }}>
+                        {formConfig.map((config) => (
+                            <Step key={config.step}>
+                                <StepLabel>{config.title}</StepLabel>
+                            </Step>
+                        ))}
+                    </Stepper>
+
+                    <form onSubmit={handleNext} noValidate>
+                        <Grow in={true} key={currentStep} timeout={300}>
+                            <Box>
+                                <FormStep title={currentStepConfig.title}>
+                                    {currentStepConfig.fields.map((field) => (
+                                        <TextField
+                                            key={field.name}
+                                            fullWidth
+                                            label={field.label}
+                                            name={field.name}
+                                            type={field.type}
+                                            required={field.required}
+                                            value={formData[field.name] || ''}
+                                            onChange={handleChange}
+                                            InputLabelProps={field.type === 'date' ? { shrink: true } : {}}
+                                            variant="outlined"
+                                            error={!!errors[field.name]}
+                                            helperText={errors[field.name]}
+                                        />
+                                    ))}
+                                </FormStep>
+                            </Box>
+                        </Grow>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 'auto', pt: 4 }}>
+                            <Button
+                                disabled={currentStep === 1}
+                                onClick={() => setCurrentStep(prev => prev - 1)}
+                                size='large'
+                            >
+                                Voltar
+                            </Button>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                size='large'
+                                disabled={loading}
+                            >
+                                {currentStep === formConfig.length ? 'Finalizar' : 'Próximo'}
+                            </Button>
+                        </Box>
+                    </form>
+
+                    {hasErrors && (
+                        <Alert variant="outlined" severity="error" sx={{ mt: 2, borderRadius: '8px' }} onClose={() => setHasErrors(false)}>
+                            Por favor, corrija os campos em vermelho antes de prosseguir.
+                        </Alert>
+                    )}
+                </Paper>
+            </Grow>
         </>
     );
 }

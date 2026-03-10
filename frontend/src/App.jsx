@@ -1,17 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import {
-  Container,
-  Typography,
-  Paper,
-  Box,
-  Button,
-  Grid,
-  Stack,
-  Grow,
-  Chip,
-  Divider,
-} from '@mui/material';
+import { Container, Typography, Paper, Box, Button, Grid, Stack, Grow, Chip, Divider } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CallIcon from '@mui/icons-material/Call';
@@ -156,20 +145,7 @@ function App() {
           </Paper>
         </Grow>
       ) : (
-        <Grow in timeout={500}>
-          <Paper elevation={4} sx={{ p: { xs: 4, md: 6 }, borderRadius: 4 }}>
-            <Box sx={{ textAlign: 'center', mb: 5 }}>
-              <Typography variant="h4" component="h1" color="primary" fontWeight="700" gutterBottom>
-                Inscrição no Evento
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Preencha os passos abaixo para registrar o seu interesse. Leva menos de 1 minuto!
-              </Typography>
-            </Box>
-
-            <RegistrationForm />
-          </Paper>
-        </Grow>
+        <RegistrationForm />
       )}
 
       <Box sx={{ mt: 8, display: 'flex', justifyContent: 'center' }}>
